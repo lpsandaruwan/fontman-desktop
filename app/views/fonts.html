@@ -1,24 +1,10 @@
 <div class="wrapper" ng-controller="fontsController">
 
-    <div class="header">
-
-        <div class="options-panel" layout="row">
-
-            <div class="search-area">
-                <md-input-container flex="80">
-                    <input ng-model="searchText" placeholder="Search">
-                </md-input-container>
-            </div>
-
-        </div>
-
-    </div>
-
     <div class="content">
 
         <ul class="font-list">
 
-            <li class="font-box" ng-mouseleave="hoverOut()" ng-mouseover="hoverIn()" ng-repeat="font in fontsList | filter:searchText" ng-style="fontBoxStyle">
+            <li class="font-box" ng-mouseleave="hoverOut()" ng-mouseover="hoverIn()" ng-repeat="font in fontsList" ng-style="fontBoxStyle">
 
                 <div class="top-indicator" layout="row" flex="85">
 
@@ -28,15 +14,6 @@
 
                             <div class="font-name">
                                 {{font.name}}
-
-                                <md-icon class="bucket-button" ng-click="addToFavorites(font)" ng-if="!font.isChosen" ng-show="hoverEdit">
-                                    add_circle
-                                </md-icon>
-
-                                <md-icon class="bucket-button" ng-click="removeFromFavorites(font)" ng-if="font.isChosen" ng-show="hoverEdit">
-                                    remove_circle
-                                </md-icon>
-
                             </div>
 
                         </div>

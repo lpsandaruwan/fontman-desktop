@@ -54,7 +54,7 @@ fontsModule
                 $scope.fontBoxStyle = {"min-height": "300px", "width": "300px"};
                 font.textSize = 25;
 
-            } else if (font.viewId.id == 3) {
+            } else if (font.viewId.id === 3) {
                 font.displayText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris risus ex, maximus vel dignissim et, auctor et lectus. Integer aliquet quam augue, eget venenatis ante fermentum in. Integer semper cursus nisi, non mattis ipsum pellentesque id."
                 $scope.fontBoxStyle = {"min-height": "350px", "width": "500px"};
                 font.textSize = 18;
@@ -67,38 +67,6 @@ fontsModule
                 font.displayText = _font.displayText;
                 font.textSize = _font.textSize;
             })
-        };
-
-
-        /* favorite collection operations */
-        // add font to favorites
-        $scope.addToFavorites = function (font) {
-            $scope.json_data = {is_chosen: true};
-
-            $http.post("http://127.0.0.1:5000/fonts/" + font.fontId + "/update", $scope.json_data)
-                .then(function onSuccess(response) {
-                    if (response.data) {
-                        font.isChosen = true;
-                    }
-                })
-                .catch(function onError(response) {
-                    alert("FMS connection failed");
-                });
-        };
-
-        // remove from favorites
-        $scope.removeFromFavorites = function (font) {
-            $scope.json_data = {is_chosen: false};
-
-            $http.post("http://127.0.0.1:5000/fonts/" + font.fontId + "/update", $scope.json_data)
-                .then(function onSuccess(response) {
-                    if (response.data) {
-                        font.isChosen = false;
-                    }
-                })
-                .catch(function onError(response) {
-                    alert("FMS connection failed");
-                });
         };
 
 
@@ -116,13 +84,6 @@ fontsModule
             fontSelectorService.selectFont(font);
             $scope.selectedFont = fontSelectorService.getSelectedFont();
         };
-
-        // set first font of the fonts list as the selected font
-        $timeout(function () {
-            fontSelectorService.selectFont($scope.fontsList[0]);
-            $scope.selectedFont = fontSelectorService.getSelectedFont();
-        }, 500);
-
 
         /*** specimen view controllers ***/
         // show font specimen view
